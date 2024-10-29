@@ -5,26 +5,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Raters, VideoStyle, VideoType } from "../../Util/Enums/enum";
+import { Raters } from "../../Util/Enums/enum";
 import Status from "../Status/Status";
 import Rating from "../Rating/Rating";
-
-const movies = [
-  {
-    style: VideoStyle.ANIME,
-    type: VideoType.SERIES,
-    name: "Fullmetal Alchamist: Brotherhood",
-    status: 1,
-    matenRating: 10,
-    delaRating: 0,
-  },
-];
+import { films } from "../../data";
+import AddFilm from "../AddFilm/AddFilm";
 
 const MovieTable = () => {
   const avgRating = (r1: number, r2: number): number => (r1 + r2) / 2;
 
   return (
     <div>
+      <AddFilm />
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650, background: "#ccc" }}
@@ -42,35 +34,35 @@ const MovieTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {movies.map((movie) => (
+            {films.map((film) => (
               <TableRow
-                key={movie.name}
+                key={film.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {movie.name}
+                  {film.name}
                 </TableCell>
-                <TableCell align="right">{movie.style}</TableCell>
-                <TableCell align="right">{movie.type}</TableCell>
+                <TableCell align="right">{film.style}</TableCell>
+                <TableCell align="right">{film.type}</TableCell>
                 <TableCell align="right">
                   <Rating
-                    _id="rnd"
-                    originalRating={movie.matenRating}
+                    _id={film._id}
+                    originalRating={film.matenRating}
                     rater={Raters.MATEN}
                   />
                 </TableCell>
                 <TableCell align="right">
                   <Rating
-                    _id="rnd"
-                    originalRating={movie.delaRating}
+                    _id={film._id}
+                    originalRating={film.delaRating}
                     rater={Raters.DELA}
                   />
                 </TableCell>
                 <TableCell align="right">
-                  {avgRating(movie.matenRating, movie.delaRating)}
+                  {avgRating(film.matenRating, film.delaRating)}
                 </TableCell>
                 <TableCell align="right">
-                  {<Status _id="rnd" originStatus={movie.status} />}
+                  {<Status _id={film._id} originStatus={film.status} />}
                 </TableCell>
               </TableRow>
             ))}
