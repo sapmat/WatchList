@@ -1,11 +1,17 @@
 import MovieRow from "./Components/MovieRow/MovieRow";
 import "./App.css";
+import "./general.css";
+import AddFilm from "./Components/AddFilm/AddFilm";
+import { useState } from "react";
 
 function App() {
+  const [render, rerenerd] = useState<number>(0);
+
   return (
-    <>
-      <MovieRow />
-    </>
+    <div className="app">
+      <AddFilm rerenerd={rerenerd} />
+      <MovieRow render={render} rerender={rerenerd} />
+    </div>
   );
 }
 

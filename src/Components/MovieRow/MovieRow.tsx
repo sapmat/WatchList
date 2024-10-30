@@ -9,14 +9,55 @@ import { Raters } from "../../Util/Enums/enum";
 import Status from "../Status/Status";
 import Rating from "../Rating/Rating";
 import { films } from "../../data";
-import AddFilm from "../AddFilm/AddFilm";
+import { useEffect, useState } from "react";
+import RemoveFilm from "../removeFilm/RemoveFilm";
 
-const MovieTable = () => {
+const MovieTable = ({render, rerender} : {render: number, rerender: (n: number) => void}) => {
+  const [filmsElems, setFilemElems] = useState<JSX.Element[]>([]);
   const avgRating = (r1: number, r2: number): number => (r1 + r2) / 2;
+
+  useEffect(() => {
+    setFilemElems(
+      films.map((film) => (
+        <TableRow
+          key={film.name}
+          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+        >
+          <TableCell component="th" scope="row">
+            {film.name}
+          </TableCell>
+          <TableCell align="right">{film.style}</TableCell>
+          <TableCell align="right">{film.type}</TableCell>
+          <TableCell align="right">
+            <Rating
+              _id={film._id}
+              originalRating={film.matenRating}
+              rater={Raters.MATEN}
+            />
+          </TableCell>
+          <TableCell align="right">
+            <Rating
+              _id={film._id}
+              originalRating={film.delaRating}
+              rater={Raters.DELA}
+            />
+          </TableCell>
+          <TableCell align="right">
+            {avgRating(film.matenRating, film.delaRating)}
+          </TableCell>
+          <TableCell align="right">
+            {<Status _id={film._id} originStatus={film.status} />}
+          </TableCell>
+          <TableCell align="right">
+            <RemoveFilm _id={film._id} rerenerd={rerender} />
+          </TableCell>
+        </TableRow>
+      ))
+    );
+  }, [render]);
 
   return (
     <div>
-      <AddFilm />
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650, background: "#ccc" }}
@@ -31,42 +72,10 @@ const MovieTable = () => {
               <TableCell align="right">Dela's Rating</TableCell>
               <TableCell align="right">Average Rating</TableCell>
               <TableCell align="right">Status</TableCell>
+              <TableCell align="right">Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {films.map((film) => (
-              <TableRow
-                key={film.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {film.name}
-                </TableCell>
-                <TableCell align="right">{film.style}</TableCell>
-                <TableCell align="right">{film.type}</TableCell>
-                <TableCell align="right">
-                  <Rating
-                    _id={film._id}
-                    originalRating={film.matenRating}
-                    rater={Raters.MATEN}
-                  />
-                </TableCell>
-                <TableCell align="right">
-                  <Rating
-                    _id={film._id}
-                    originalRating={film.delaRating}
-                    rater={Raters.DELA}
-                  />
-                </TableCell>
-                <TableCell align="right">
-                  {avgRating(film.matenRating, film.delaRating)}
-                </TableCell>
-                <TableCell align="right">
-                  {<Status _id={film._id} originStatus={film.status} />}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+          <TableBody>{filmsElems}</TableBody>
         </Table>
       </TableContainer>
     </div>

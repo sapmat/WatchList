@@ -1,10 +1,10 @@
-import { VideoStyle, VideoType } from "./Util/Enums/enum";
+import { FilmStyle, FilmType } from "./Util/Enums/enum";
 
 export const films = [
   {
     _id: "0",
-    style: VideoStyle.ANIME,
-    type: VideoType.SERIES,
+    style: FilmStyle.ANIME,
+    type: FilmType.SERIES,
     name: "Fullmetal Alchamist: Brotherhood",
     status: 1,
     matenRating: 10,
