@@ -56,7 +56,6 @@
   border: none;
   box-shadow: 0 0 0 1px #949494;
   transition: box-shadow 0.2s ease-in-out;
-  background: none;
 
   &:hover {
     box-shadow: 0 0 0 1px #4e4e4e;
