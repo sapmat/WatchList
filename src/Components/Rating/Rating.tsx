@@ -6,10 +6,12 @@ const Rating = ({
   _id,
   originalRating,
   rater,
+  edit,
 }: {
   _id: string;
   originalRating: number;
   rater: Raters;
+  edit: boolean;
 }) => {
   const handleRatingInput = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -30,12 +32,14 @@ const Rating = ({
 
   return (
     <TextField
+      className={edit ? "" : "edit"}
       sx={{ width: "6em" }}
       variant="standard"
       type="number"
       defaultValue={originalRating}
       slotProps={{ input: { inputProps: { min: 0, max: 10 } } }}
       onChange={(e) => handleRatingInput(e, rater)}
+      disabled={!edit}
     />
   );
 };

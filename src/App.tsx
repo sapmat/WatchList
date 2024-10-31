@@ -1,8 +1,8 @@
-import MovieRow from "./Components/MovieRow/MovieRow";
 import "./App.css";
 import "./general.css";
 import AddFilm from "./Components/AddFilm/AddFilm";
 import { useState } from "react";
+import FilmTable from "./Components/FilmTable/FilmTable";
 
 function App() {
   const [render, rerenerd] = useState<number>(0);
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="app">
       <AddFilm rerenerd={rerenerd} />
-      <MovieRow render={render} rerender={rerenerd} />
+      <FilmTable render={render} rerender={rerenerd} />
     </div>
   );
 }

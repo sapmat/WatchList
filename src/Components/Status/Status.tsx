@@ -12,7 +12,7 @@ const Status = ({
   originStatus: number;
 }) => {
   const statusAsText = (status: number): string =>
-    status === 0 ? "Not watched" : status === 1 ? "Watching" : "Watched";
+    status === -1 ? "To watched" : status === 0 ? "Watching" : "Watched";
 
   const [status, setStatus] = useState<number>(originStatus);
 
@@ -25,9 +25,9 @@ const Status = ({
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <Select value={status.toString()} onChange={handleChange}>
+          <MenuItem value={-1}>{statusAsText(-1)}</MenuItem>
           <MenuItem value={0}>{statusAsText(0)}</MenuItem>
           <MenuItem value={1}>{statusAsText(1)}</MenuItem>
-          <MenuItem value={2}>{statusAsText(2)}</MenuItem>
         </Select>
       </FormControl>
     </Box>

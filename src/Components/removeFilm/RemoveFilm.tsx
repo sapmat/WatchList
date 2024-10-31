@@ -3,10 +3,10 @@ import { films } from "../../data";
 
 const RemoveFilm = ({
   _id,
-  rerenerd,
+  rerender,
 }: {
   _id: string;
-  rerenerd: (n: number) => void;
+  rerender: (n: number) => void;
 }) => {
   const removeFilm = () => {
     const indexToRemove = films.findIndex((film) => film._id === _id);
@@ -15,7 +15,7 @@ const RemoveFilm = ({
       films.splice(indexToRemove, 1);
     }
 
-    rerenerd(Math.random());
+    rerender(Math.random());
   };
 
   return (

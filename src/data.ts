@@ -1,6 +1,7 @@
 import { FilmStyle, FilmType } from "./Util/Enums/enum";
+import { Film } from "./Util/Interfaces/film.interface";
 
-export const films = [
+export const films: Film[] = [
   {
     _id: "0",
     style: FilmStyle.ANIME,
