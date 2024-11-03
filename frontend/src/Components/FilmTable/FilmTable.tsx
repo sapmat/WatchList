@@ -5,9 +5,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { films } from "../../data";
 import { useEffect, useState } from "react";
 import FilmRow from "../MovieRow/MovieRow";
+import { Film } from "../../Util/Interfaces/film.interface";
+import { getFilms } from "../../Util/API/apiCall";
 
 const FilmTable = ({
   render,
@@ -19,11 +20,13 @@ const FilmTable = ({
   const [filmsElems, setFilemElems] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    setFilemElems(
-      films.map((film) => (
-        <FilmRow film={film} render={render} rerender={rerender} />
-      ))
-    );
+    getFilms().then((films: Film[]) => {
+      setFilemElems(
+        films.map((film) => (
+          <FilmRow film={film} render={render} rerender={rerender} />
+        ))
+      );
+    });
   }, [render]);
 
   return (

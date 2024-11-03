@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { films } from "../../data";
-import { FilmStyle, FilmType, WatchStatus } from "../../Util/Enums/enum";
+import { FilmStyle, FilmType } from "../../Util/Enums/enum";
 import { TextField } from "@mui/material";
 import FilmStyleSelect from "../FilmStyleSelect/FimeStyleSelect";
 import FilmTypeSelect from "../FilmTypeSelect/FilmTypeSelect";
+import { createFilm } from "../../Util/API/apiCall";
 
 const AddFilm = ({ rerenerd }: { rerenerd: (n: number) => void }) => {
   const [name, setName] = useState<string>();
@@ -12,18 +12,7 @@ const AddFilm = ({ rerenerd }: { rerenerd: (n: number) => void }) => {
 
   const addFilm = () => {
     if (name && style && filmType) {
-      // check if film exists already
-
-      films.push({
-        _id: films.length.toString(),
-        style,
-        type: filmType,
-        name,
-        status: WatchStatus.TO_WATCH,
-        matenRating: 0,
-        delaRating: 0,
-      });
-
+      createFilm(name, style, filmType);
       rerenerd(Math.random());
     }
   };

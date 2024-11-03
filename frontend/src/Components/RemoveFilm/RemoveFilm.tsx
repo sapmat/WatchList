@@ -1,5 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { films } from "../../data";
+import { deleteFilm } from "../../Util/API/apiCall";
 
 const RemoveFilm = ({
   _id,
@@ -9,17 +9,12 @@ const RemoveFilm = ({
   rerender: (n: number) => void;
 }) => {
   const removeFilm = () => {
-    const indexToRemove = films.findIndex((film) => film._id === _id);
-
-    if (indexToRemove !== -1) {
-      films.splice(indexToRemove, 1);
-    }
-
+    deleteFilm(_id);
     rerender(Math.random());
   };
 
   return (
-    <button id="remove-line" onClick={removeFilm}>
+    <button className="row-button" onClick={removeFilm}>
       <DeleteIcon />
     </button>
   );

@@ -6,6 +6,6 @@ export interface Film {
   type: FilmType;
   name: string;
   status: WatchStatus;
-  matenRating: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  delaRating: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  matenRating: number;
+  delaRating: number;
 }
