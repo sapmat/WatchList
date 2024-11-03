@@ -1,4 +1,4 @@
-import { FilmStyle, FilmType } from "./Util/Enums/enum";
+import { FilmStyle, FilmType, WatchStatus } from "./Util/Enums/enum";
 import { Film } from "./Util/Interfaces/film.interface";
 
 export const films: Film[] = [
@@ -7,7 +7,7 @@ export const films: Film[] = [
     style: FilmStyle.ANIME,
     type: FilmType.SERIES,
     name: "Fullmetal Alchamist: Brotherhood",
-    status: 1,
+    status: WatchStatus.WATCHING,
     matenRating: 10,
     delaRating: 0,
   },

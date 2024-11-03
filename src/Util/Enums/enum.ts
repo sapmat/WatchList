@@ -9,7 +9,8 @@ export enum FilmType {
   SERIES = "Series",
 }
 
-export enum Raters {
-  MATEN = "maten",
-  DELA = "dela",
+export enum WatchStatus {
+  TO_WATCH = "To Watch",
+  WATCHING = "Watching",
+  WATCHED = "Watched",
 }

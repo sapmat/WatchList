@@ -16,7 +16,6 @@ const FilmTable = ({
   render: number;
   rerender: (n: number) => void;
 }) => {
-  const [edit, setEdit] = useState<boolean>(false);
   const [filmsElems, setFilemElems] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
@@ -25,13 +24,10 @@ const FilmTable = ({
         <FilmRow film={film} render={render} rerender={rerender} />
       ))
     );
-  }, [render, edit]);
+  }, [render]);
 
   return (
     <div className="table">
-      <button onClick={() => setEdit((prev) => !prev)}>
-        {edit.toString()}
-      </button>
       <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650, background: "#ccc" }}
@@ -40,14 +36,14 @@ const FilmTable = ({
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="right">Style</TableCell>
-              <TableCell align="right">Type</TableCell>
-              <TableCell align="right">Maten's Rating</TableCell>
-              <TableCell align="right">Dela's Rating</TableCell>
-              <TableCell align="right">Average Rating</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Edit</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell>Style</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Maten's Rating</TableCell>
+              <TableCell>Dela's Rating</TableCell>
+              <TableCell>Average Rating</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{filmsElems}</TableBody>
