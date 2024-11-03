@@ -8,7 +8,7 @@ export class FilmRepository {
     if (film) {
       throw new MyError({
         code: 400,
-        message: "Film name",
+        message: "Film name already exists",
       });
     }
 
