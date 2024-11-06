@@ -14,7 +14,6 @@ const FilmRow = ({
   rerender,
 }: {
   film: Film;
-  render: number;
   rerender: (n: number) => void;
 }) => {
   const [name, setName] = useState<string>(film.name);
@@ -131,7 +130,7 @@ const FilmRow = ({
       <TableCell>
         <TextField
           className={edit ? "" : "edit"}
-          sx={{ width: "6em" }}
+          sx={{ width: "7em" }}
           variant="standard"
           type="number"
           defaultValue={matenRating}
@@ -144,7 +143,7 @@ const FilmRow = ({
       <TableCell>
         <TextField
           className={edit ? "" : "edit"}
-          sx={{ width: "6em" }}
+          sx={{ width: "7em"}}
           variant="standard"
           type="number"
           defaultValue={delaRating}
@@ -186,7 +185,6 @@ const FilmRow = ({
             onClick={() => {
               handelUpdate();
               setEdit((prev) => !prev);
-              rerender(Math.random());
             }}
           >
             <SaveIcon />
@@ -196,7 +194,6 @@ const FilmRow = ({
             className="row-button"
             onClick={() => {
               setEdit((prev) => !prev);
-              rerender(Math.random());
             }}
           >
             <EditIcon />

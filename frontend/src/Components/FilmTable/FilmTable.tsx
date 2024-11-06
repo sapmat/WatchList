@@ -21,23 +21,16 @@ const FilmTable = ({
 
   useEffect(() => {
     getFilms().then((films: Film[]) => {
-      console.log(films);
-      
       setFilemElems(
-        films.map((film) => (
-          <FilmRow film={film} render={render} rerender={rerender} />
-        ))
+        films.map((film) => <FilmRow film={film} rerender={rerender} />)
       );
     });
   }, [render]);
 
   return (
     <div className="table">
-      <TableContainer component={Paper}>
-        <Table
-          sx={{ minWidth: 650, background: "#ccc" }}
-          aria-label="simple table"
-        >
+      <TableContainer id="tbl" sx={{maxWidth: "95vw", overflowY: "scroll", maxHeight: "50vh" }} component={Paper}>
+        <Table sx={{ background: "#ccc" }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>

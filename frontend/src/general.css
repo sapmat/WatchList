@@ -10,6 +10,26 @@
   }
 }
 
+#tbl {
+  &::-webkit-scrollbar {
+    background-color: #ccc;
+    width: 12px;
+    border-radius: 0 5px 5px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0.2, #8a8a8a),
+      color-stop(1, #383838)
+    );
+    border: #ccc 2px solid;
+    border-radius: 10px;
+  }
+}
+
 .add-film {
   display: flex;
   justify-content: center;
