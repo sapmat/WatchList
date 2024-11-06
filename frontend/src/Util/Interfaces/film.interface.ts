@@ -9,4 +9,5 @@ export interface Film {
   matenRating: number;
   delaRating: number;
   averageRating: number;
+  createdAt: Date;
 }

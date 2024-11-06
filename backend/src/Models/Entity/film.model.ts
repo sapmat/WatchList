@@ -58,7 +58,7 @@ const FilmSchema: Schema = new Schema(
       max: 10,
     },
   },
-  { autoIndex: true }
+  { autoIndex: true, timestamps: true }
 );
 
 export default mongoose.model<Film>("film", FilmSchema);

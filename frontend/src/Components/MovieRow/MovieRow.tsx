@@ -42,6 +42,7 @@ const FilmRow = ({
       delaRating,
       averageRating,
       status,
+      createdAt: film.createdAt,
     };
 
     return updateFilm(film._id, newFilm);
@@ -59,6 +60,13 @@ const FilmRow = ({
       f(Number(e.target.value));
     }
   };
+
+  const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }).format(new Date(date));
 
   return (
     <TableRow
@@ -168,6 +176,8 @@ const FilmRow = ({
           </FormControl>
         </Box>
       </TableCell>
+
+      <TableCell>{formatDate(film.createdAt)}</TableCell>
 
       <TableCell>
         {edit ? (

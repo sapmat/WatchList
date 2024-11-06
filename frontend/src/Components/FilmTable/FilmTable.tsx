@@ -21,6 +21,8 @@ const FilmTable = ({
 
   useEffect(() => {
     getFilms().then((films: Film[]) => {
+      console.log(films);
+      
       setFilemElems(
         films.map((film) => (
           <FilmRow film={film} render={render} rerender={rerender} />
@@ -45,6 +47,7 @@ const FilmTable = ({
               <TableCell>Dela's Rating</TableCell>
               <TableCell>Average Rating</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Created At</TableCell>
               <TableCell>Edit</TableCell>
               <TableCell>Delete</TableCell>
             </TableRow>
