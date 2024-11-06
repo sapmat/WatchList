@@ -13,8 +13,9 @@ export interface Film extends Document {
   type: FilmType;
   name: string;
   status: WatchStatus;
-  matenRating: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  delaRating: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  matenRating: number;
+  delaRating: number;
+  averageRating: number;
 }
 
 const FilmSchema: Schema = new Schema(
@@ -45,6 +46,12 @@ const FilmSchema: Schema = new Schema(
       max: 10,
     },
     delaRating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 10,
+    },
+    averageRating: {
       type: Number,
       default: 0,
       min: 0,

@@ -1,6 +1,6 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import RemoveFilm from "../RemoveFilm/RemoveFilm";
 import { Film } from "../../Util/Interfaces/film.interface";
 import EditIcon from "@mui/icons-material/Edit";
@@ -22,8 +22,15 @@ const FilmRow = ({
   const [filmType, setType] = useState<FilmType>(film.type);
   const [matenRating, setMatenRating] = useState<number>(film.matenRating);
   const [delaRating, setDelaRating] = useState<number>(film.delaRating);
+  const [averageRating, setAverageRating] = useState<number>(
+    film.averageRating
+  );
   const [status, setStatus] = useState<WatchStatus>(film.status);
   const [edit, setEdit] = useState<boolean>(false);
+
+  useEffect(() => {
+    setAverageRating((matenRating + delaRating) / 2);
+  }, [matenRating, delaRating]);
 
   const handelUpdate = async () => {
     const newFilm: Film = {
@@ -33,6 +40,7 @@ const FilmRow = ({
       type: filmType,
       matenRating,
       delaRating,
+      averageRating,
       status,
     };
 
@@ -48,7 +56,7 @@ const FilmRow = ({
     } else if ((e.target.value as unknown as number) < 0) {
       e.target.value = "0";
     } else {
-      f(e.target.value as unknown as number);
+      f(Number(e.target.value));
     }
   };
 
@@ -138,7 +146,7 @@ const FilmRow = ({
         />
       </TableCell>
 
-      <TableCell>{(film.matenRating + film.delaRating) / 2}</TableCell>
+      <TableCell>{averageRating}</TableCell>
 
       <TableCell>
         <Box sx={{ minWidth: "7em" }}>

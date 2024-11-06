@@ -8,4 +8,5 @@ export interface Film {
   status: WatchStatus;
   matenRating: number;
   delaRating: number;
+  averageRating: number;
 }

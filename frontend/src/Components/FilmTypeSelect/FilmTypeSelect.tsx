@@ -11,7 +11,7 @@ const FilmTypeSelect = ({
 }) => {
   return (
     <FormControl>
-      <InputLabel id="film-style-label">Style</InputLabel>
+      <InputLabel id="film-style-label">Type</InputLabel>
       <CustomSelect
         labelId="film-style-label"
         value={filtType || ""}
