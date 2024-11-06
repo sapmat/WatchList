@@ -11,10 +11,8 @@ import { updateFilm } from "../../Util/API/apiCall";
 
 const FilmRow = ({
   film,
-  rerender,
 }: {
   film: Film;
-  rerender: (n: number) => void;
 }) => {
   const [name, setName] = useState<string>(film.name);
   const [style, setStyle] = useState<FilmStyle>(film.style);
@@ -143,7 +141,7 @@ const FilmRow = ({
       <TableCell>
         <TextField
           className={edit ? "" : "edit"}
-          sx={{ width: "7em"}}
+          sx={{ width: "7em" }}
           variant="standard"
           type="number"
           defaultValue={delaRating}
@@ -202,7 +200,7 @@ const FilmRow = ({
       </TableCell>
 
       <TableCell>
-        <RemoveFilm _id={film._id} rerender={rerender} />
+        <RemoveFilm _id={film._id} />
       </TableCell>
     </TableRow>
   );
