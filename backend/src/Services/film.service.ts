@@ -1,5 +1,6 @@
 import { Film, PartialFilm } from "../Models/Entity/film.model";
 import { WatchStatus } from "../Models/Enums/enum";
+import { QueryType } from "../Models/Interfaces/query";
 import { FilmRepositories } from "../Repositories/film.repositories";
 
 export class FilmService {
@@ -22,8 +23,8 @@ export class FilmService {
     return FilmRepositories.getFilm(_id);
   }
 
-  async getAllFilms(): Promise<Film[]> {
-    return FilmRepositories.getFilms();
+  async getAllFilms(query: QueryType): Promise<Film[]> {
+    return FilmRepositories.getFilms(query);
   }
 
   async deleteFilms(_id: string): Promise<Film> {

@@ -1,9 +1,10 @@
 import MyError from "../Middleware/Errors/MyError";
 import filmModel, { Film } from "../Models/Entity/film.model";
+import { QueryType } from "../Models/Interfaces/query";
 
 export class FilmRepository {
   async createFilm(data: Partial<Film>): Promise<Film> {
-    const film: Film | null = await filmModel.findOne({ name: data.name});
+    const film: Film | null = await filmModel.findOne({ name: data.name });
 
     if (film) {
       throw new MyError({
@@ -44,8 +45,48 @@ export class FilmRepository {
     return film;
   }
 
-  async getFilms(): Promise<Film[]> {
-    return filmModel.find();
+  async getFilms(query: QueryType): Promise<Film[]> {
+    const {
+      name = "",
+      style = "",
+      type = "",
+      matenRatingStart = 0,
+      matenRatingEnd = 10,
+      delaRatingStart = 0,
+      delaRatingEnd = 10,
+      averageRatingStart = 0,
+      averageRatingEnd = 10,
+      status = "",
+      createdAtStart = new Date(2024, 9, 11),
+      createdAtEnd = new Date(4024, 9, 11),
+    } = { ...query };
+
+    return filmModel.aggregate([
+      {
+        $match: {
+          name: { $regex: name, $options: "i" },
+          style: { $regex: style, $options: "i" },
+          type: { $regex: type, $options: "i" },
+          matenRating: {
+            $gte: matenRatingStart,
+            $lte: matenRatingEnd,
+          },
+          delaRating: {
+            $gte: delaRatingStart,
+            $lte: delaRatingEnd,
+          },
+          averageRating: {
+            $gte: averageRatingStart,
+            $lte: averageRatingEnd,
+          },
+          status: { $regex: status, $options: "i" },
+          createdAt: {
+            $gte: createdAtStart,
+            $lte: createdAtEnd,
+          },
+        },
+      },
+    ]);
   }
 
   async deleteFilm(_id: string): Promise<Film> {
