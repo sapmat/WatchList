@@ -1,6 +1,6 @@
 import { FilmStyle, FilmType, WatchStatus } from "../Enums/enum";
 
-export interface QueryType {
+export interface FilterType {
   name?: String;
   style?: FilmStyle;
   type?: FilmType;

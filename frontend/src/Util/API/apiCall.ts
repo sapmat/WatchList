@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Film } from "../Interfaces/film.interface";
 import { FilmStyle, FilmType } from "../Enums/enum";
+import { FilterType } from "../Interfaces/filetr";
 
 const axiosInstance = axios.create({ baseURL: "http://localhost:3000/films" });
 
@@ -12,8 +13,8 @@ export const createFilm = async (
   return axiosInstance.post("/", { name, style, type }).then((res) => res.data);
 };
 
-export const getFilms = async (): Promise<Film[]> => {
-  return axiosInstance.get("/all").then((res) => res.data);
+export const getFilms = async (query: FilterType): Promise<Film[]> => {
+  return axiosInstance.post(`/all`, { ...query }).then((res) => res.data);
 };
 
 export const getFilm = async (_id: string): Promise<Film[]> => {

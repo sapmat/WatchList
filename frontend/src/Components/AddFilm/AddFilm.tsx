@@ -5,7 +5,7 @@ import FilmStyleSelect from "../FilmStyleSelect/FimeStyleSelect";
 import FilmTypeSelect from "../FilmTypeSelect/FilmTypeSelect";
 import { createFilm } from "../../Util/API/apiCall";
 
-const AddFilm = ({ rerenerd }: { rerenerd: (n: number) => void }) => {
+const AddFilm = ({ rerender }: { rerender: (n: number) => void }) => {
   const [name, setName] = useState<string>();
   const [style, setStyle] = useState<FilmStyle>();
   const [filmType, setType] = useState<FilmType>();
@@ -13,7 +13,7 @@ const AddFilm = ({ rerenerd }: { rerenerd: (n: number) => void }) => {
   const addFilm = () => {
     if (name && style && filmType) {
       createFilm(name, style, filmType);
-      rerenerd(Math.random());
+      rerender(Math.random());
     }
   };
 
@@ -27,8 +27,8 @@ const AddFilm = ({ rerenerd }: { rerenerd: (n: number) => void }) => {
         }}
       />
 
-      <FilmStyleSelect style={style} setStyle={setStyle} />
-      <FilmTypeSelect filtType={filmType} setType={setType} />
+      <FilmStyleSelect style={style} setStyle={setStyle} addAny={false} />
+      <FilmTypeSelect filmType={filmType} setType={setType} addAny={false} />
 
       <button onClick={addFilm}>Add</button>
     </div>

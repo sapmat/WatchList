@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { FilmServices } from "../Services/film.service";
 import { Film, PartialFilm } from "../Models/Entity/film.model";
-import { QueryType } from "../Models/Interfaces/query";
+import { FilterType } from "../Models/Interfaces/query";
 
 class FilmController {
   async addFilm(req: Request, res: Response) {
@@ -23,8 +23,8 @@ class FilmController {
   }
 
   async getAllFilms(req: Request, res: Response) {
-    const query: QueryType = req.query;
-    const films = await FilmServices.getAllFilms(query);
+    const filter: FilterType = req.body;
+    const films = await FilmServices.getAllFilms(filter);
     res.status(200).send(films);
   }
 

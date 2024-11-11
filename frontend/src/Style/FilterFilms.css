@@ -1,0 +1,79 @@
+.filter-films {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1em;
+
+  background-color: #383838;
+  border-radius: 10px;
+  width: 60vw;
+  padding: 2em;
+
+  .filter-category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+
+    .category-title {
+      text-align: start;
+      width: 100%;
+    }
+
+    .section {
+      box-sizing: border-box;
+
+      display: flex;
+      gap: 5px;
+
+      border: #929292 1px solid;
+      border-radius: 5px;
+      height: 2em;
+      padding: 0 5px;
+
+      .content {
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+
+        .title {
+          color: white;
+        }
+
+        input {
+          font-size: 1em;
+          color: rgb(160, 160, 160);
+          background: none;
+          border: none;
+
+          &:focus {
+            border: none;
+            outline: none;
+            cursor: pointer;
+          }
+        }
+
+        select {
+          -webkit-appearance: none;
+
+          font-size: 1em;
+          color: rgb(160, 160, 160);
+          background: none;
+          border: none;
+          border-radius: 1px;
+          outline: none;
+
+          &:focus {
+            border: none;
+            outline: none;
+            cursor: pointer;
+          }
+
+          option {
+            background-color: #383838;
+          }
+        }
+      }
+    }
+  }
+}

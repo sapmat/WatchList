@@ -5,12 +5,9 @@ import { validateJoi } from "../Middleware/Validator/validator";
 
 export const filmRouter = express.Router();
 
-filmRouter.post(
-  "/",
-  validateJoi("film"),
-  nextFunc(FilmControllers.addFilm)
-);
+filmRouter.post("/", validateJoi("film"), nextFunc(FilmControllers.addFilm));
+filmRouter.post("/all", nextFunc(FilmControllers.getAllFilms));
+
 filmRouter.patch("/:filmId", nextFunc(FilmControllers.updateFilm));
-filmRouter.get("/all", nextFunc(FilmControllers.getAllFilms));
 filmRouter.get("/one/:filmId", nextFunc(FilmControllers.getFilm));
 filmRouter.delete("/:filmId", nextFunc(FilmControllers.deleteFilm));

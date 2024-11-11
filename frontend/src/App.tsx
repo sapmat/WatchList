@@ -6,21 +6,23 @@ import { getFilms } from "./Util/API/apiCall";
 import FilmTable from "./Components/FilmTable/FilmTable";
 import FilterTable from "./Components/Filter/FilterTable";
 import { Film } from "./Util/Interfaces/film.interface";
+import { FilterType } from "./Util/Interfaces/filetr";
 
 function App() {
-  const [render, rerenerd] = useState<number>(0);
+  const [render, rerender] = useState<number>(0);
+  const [filter, setFilter] = useState<FilterType>({});
   const [films, setFilms] = useState<Film[]>([]);
 
   useEffect(() => {
-    getFilms().then((films: Film[]) => {
+    getFilms(filter).then((films: Film[]) => {
       setFilms(films);
     });
-  }, [render]);
+  }, [render, filter]);
 
   return (
     <div className="app">
-      <AddFilm rerenerd={rerenerd} />
-      <FilterTable />
+      <AddFilm rerender={rerender} />
+      <FilterTable setFilter={setFilter} />
       <FilmTable films={films} />
     </div>
   );

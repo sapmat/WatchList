@@ -1,6 +1,6 @@
 import MyError from "../Middleware/Errors/MyError";
 import filmModel, { Film } from "../Models/Entity/film.model";
-import { QueryType } from "../Models/Interfaces/query";
+import { FilterType } from "../Models/Interfaces/query";
 
 export class FilmRepository {
   async createFilm(data: Partial<Film>): Promise<Film> {
@@ -45,7 +45,7 @@ export class FilmRepository {
     return film;
   }
 
-  async getFilms(query: QueryType): Promise<Film[]> {
+  async getFilms(filter: FilterType): Promise<Film[]> {
     const {
       name = "",
       style = "",
@@ -59,7 +59,7 @@ export class FilmRepository {
       status = "",
       createdAtStart = new Date(2024, 9, 11),
       createdAtEnd = new Date(4024, 9, 11),
-    } = { ...query };
+    } = { ...filter };
 
     return filmModel.aggregate([
       {
