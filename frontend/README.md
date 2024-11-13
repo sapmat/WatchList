@@ -11,3 +11,5 @@ Sort
 Make it more global (with groups and accounts)
 Days range correct to selected month
 REWORK CSS
+Make as many components
+Add errors in filter

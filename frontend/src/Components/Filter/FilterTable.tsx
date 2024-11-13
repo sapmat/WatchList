@@ -1,7 +1,10 @@
 import { FilterType } from "../../Util/Interfaces/filetr";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { FilmStyle, FilmType, WatchStatus } from "../../Util/Enums/enum";
+import { Button } from "@mui/material";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import "../../Style/FilterFilms.css";
+import RatingRange from "../Range/RatingRange";
 
 const FilterTable = ({
   setFilter,
@@ -11,8 +14,8 @@ const FilterTable = ({
   const [name, setName] = useState<string>("");
   const [style, setStyle] = useState<FilmStyle | "">("");
   const [filmType, setType] = useState<FilmType | "">("");
-  const [watchStatu, setWatchStatus] = useState<WatchStatus | "">("");
-  const [yearStart, setYearStart] = useState<number>(2024);
+  const [status, setWatchStatus] = useState<WatchStatus | "">("");
+  const [yearStart, setYearStart] = useState<number>(0);
   const [monthStart, setMonthStart] = useState<number>(0);
   const [dayStart, setDayStart] = useState<number>(0);
   const [yearEnd, setYearEnd] = useState<number>(
@@ -26,19 +29,6 @@ const FilterTable = ({
   const [delaRatingEnd, setDelaRatingEnd] = useState<number>(10);
   const [averageRatingStart, setAverageRatingStart] = useState<number>(0);
   const [averageRatingEnd, setAverageRatingEnd] = useState<number>(10);
-
-  const handleRatingInput = (
-    e: FormEvent<HTMLInputElement | HTMLTextAreaElement>,
-    f: (n: number) => void
-  ) => {
-    if ((e.currentTarget.value as unknown as number) > 10) {
-      e.currentTarget.value = "10";
-    } else if ((e.currentTarget.value as unknown as number) < 0) {
-      e.currentTarget.value = "0";
-    } else {
-      f(Number(e.currentTarget.value));
-    }
-  };
 
   const getPossibleYears = (startYear: number, endYear: number) => {
     const years: number[] = [];
@@ -84,7 +74,22 @@ const FilterTable = ({
   };
 
   const handleSetFilter = () => {
-    const unfilteredFilter: FilterType = { name, style, type: filmType, createdAtStart };
+    const filter: FilterType = {};
+
+    if (name) filter.name = name;
+    if (style) filter.style = style;
+    if (filmType) filter.type = filmType;
+    if (matenRatingStart) filter.matenRatingStart = matenRatingStart;
+    if (matenRatingEnd < 10) filter.matenRatingEnd = matenRatingEnd;
+    if (delaRatingStart) filter.delaRatingStart = delaRatingStart;
+    if (delaRatingEnd < 10) filter.delaRatingEnd = delaRatingEnd;
+    if (averageRatingStart) filter.averageRatingStart = averageRatingStart;
+    if (averageRatingEnd < 10) filter.averageRatingEnd = averageRatingEnd;
+    if (status) filter.status = status;
+    filter.createdAtStart = new Date(yearStart, monthStart, dayStart);
+    filter.createdAtEnd = new Date(yearEnd, monthEnd, dayEnd);
+
+    setFilter(filter);
   };
 
   return (
@@ -106,14 +111,12 @@ const FilterTable = ({
           <div className="title">Style</div>
           <div className="content">
             <select
-              onInput={(e) =>
-                setStyle(e.currentTarget.value as FilmStyle | "")
-              }
+              onInput={(e) => setStyle(e.currentTarget.value as FilmStyle | "")}
             >
               <option value="">Any</option>
 
-              {Object.values(FilmStyle).map((styleName, index) => (
-                <option key={styleName} value={index}>
+              {Object.values(FilmStyle).map((styleName) => (
+                <option key={styleName} value={styleName}>
                   {styleName}
                 </option>
               ))}
@@ -125,9 +128,7 @@ const FilterTable = ({
           <div className="title">Type</div>
           <div className="content">
             <select
-              onInput={(e) =>
-                setType(e.currentTarget.value as FilmType | "")
-              }
+              onInput={(e) => setType(e.currentTarget.value as FilmType | "")}
             >
               <option value="">Any</option>
 
@@ -165,7 +166,7 @@ const FilterTable = ({
               <option value={0}>Month</option>
 
               {months.map((month, index) => (
-                <option key={`month-${month}`} value={index + 1}>
+                <option key={`month-${month}`} value={index}>
                   {month}
                 </option>
               ))}
@@ -261,41 +262,40 @@ const FilterTable = ({
         <div className="category-title">Rating details</div>
 
         <div className="section">
-          <div className="title">Maten's rating</div>
-          <div className="content">
-            <input
-              defaultValue={0}
-              type="number"
-              min={0}
-              max={matenRatingEnd}
-            />
-          </div>
+          <RatingRange
+            name="Maten"
+            start={matenRatingStart}
+            end={matenRatingEnd}
+            setStart={setMatenRatingStart}
+            setEnd={setMatenRatingEnd}
+          />
         </div>
 
         <div className="section">
-          <div className="title">Dela's rating</div>
-          <div className="content">
-            <input
-              defaultValue={0}
-              type="number"
-              min={0}
-              max={10}
-            />
-          </div>
+          <RatingRange
+            name="Dela"
+            start={delaRatingStart}
+            end={delaRatingEnd}
+            setStart={setDelaRatingStart}
+            setEnd={setDelaRatingEnd}
+          />
         </div>
 
         <div className="section">
-          <div className="title">Average rating</div>
-          <div className="content">
-            <input
-              defaultValue={0}
-              type="number"
-              min={0}
-              max={10}
-            />
-          </div>
+          <RatingRange
+            name="Average"
+            start={averageRatingStart}
+            end={averageRatingEnd}
+            setStart={setAverageRatingStart}
+            setEnd={setAverageRatingEnd}
+            addS={false}
+          />
         </div>
       </div>
+
+      <Button variant="text" onClick={handleSetFilter}>
+        <FilterAltIcon sx={{ fontSize: 30 }} /> Filter
+      </Button>
     </div>
   );
 };

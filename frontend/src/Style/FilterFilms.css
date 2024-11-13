@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: 2em;
 
   background-color: #383838;
   border-radius: 10px;
@@ -16,6 +16,8 @@
     gap: 1em;
 
     .category-title {
+      font-weight: 600;
+      font-size: large;
       text-align: start;
       width: 100%;
     }
@@ -53,6 +55,15 @@
           }
         }
 
+        input[type="number"] {
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+
+          width: 1.1em;
+        }
+
         select {
           -webkit-appearance: none;
 
@@ -74,6 +85,16 @@
           }
         }
       }
+    }
+  }
+
+  button {
+    color: white;
+    width: 6em;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #929292;
     }
   }
 }
