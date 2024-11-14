@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import FilmRow from "../MovieRow/MovieRow";
 import { Film } from "../../Util/Interfaces/film.interface";
+import "./FilmTable.css"
 
 const FilmTable = ({
   films,

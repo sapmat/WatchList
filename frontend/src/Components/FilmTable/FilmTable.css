@@ -1,0 +1,48 @@
+.table {
+  .css-1yrc8ca-MuiInputBase-input-MuiInput-input.Mui-disabled {
+    -webkit-text-fill-color: rgba(9, 9, 9, 0.8);
+  }
+
+  .edit {
+    div::before {
+      display: none;
+    }
+  }
+
+  #tbl {
+    background: #ccc;
+
+    &::-webkit-scrollbar {
+      background-color: #ccc;
+      width: 12px;
+      border-radius: 0 5px 5px 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.2, #8a8a8a),
+        color-stop(1, #383838)
+      );
+      border: #ccc 2px solid;
+      border-radius: 10px;
+    }
+  }
+
+  .row-button {
+    height: 100%;
+    border: none;
+    box-shadow: 0 0 0 1px #949494;
+    transition: box-shadow 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 0 1px #4e4e4e;
+    }
+
+    path {
+      filter: invert(0.8);
+    }
+  }
+}

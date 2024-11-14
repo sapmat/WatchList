@@ -3,8 +3,8 @@ import { useState } from "react";
 import { FilmStyle, FilmType, WatchStatus } from "../../Util/Enums/enum";
 import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import "../../Style/FilterFilms.css";
 import RatingRange from "../Range/RatingRange";
+import "./FilterFilms.css";
 
 const FilterTable = ({
   setFilter,

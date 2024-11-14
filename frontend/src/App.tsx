@@ -1,12 +1,11 @@
-import "./App.css";
-import "./general.css";
 import AddFilm from "./Components/AddFilm/AddFilm";
-import { useEffect, useState } from "react";
-import { getFilms } from "./Util/API/apiCall";
 import FilmTable from "./Components/FilmTable/FilmTable";
 import FilterTable from "./Components/Filter/FilterTable";
+import { useEffect, useState } from "react";
+import { getFilms } from "./Util/API/apiCall";
 import { Film } from "./Util/Interfaces/film.interface";
 import { FilterType } from "./Util/Interfaces/filetr";
+import "./App.css";
 
 function App() {
   const [render, rerender] = useState<number>(0);

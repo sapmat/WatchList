@@ -10,12 +10,14 @@
     flex-wrap: wrap;
     gap: 2em;
     padding: 1em;
+    max-width: 100%;
 
     .filter-category {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       gap: 1em;
+      max-width: 100%;
 
       .category-title {
         font-weight: 600;
@@ -26,13 +28,15 @@
 
       .section {
         box-sizing: border-box;
+        max-width: 100%;
+        align-items: center;
 
         display: flex;
+        flex-wrap: wrap;
         gap: 5px;
 
         border: #929292 1px solid;
         border-radius: 5px;
-        height: 2em;
         padding: 0 5px;
 
         .content {
@@ -96,9 +100,10 @@
   }
 
   button {
+    box-sizing: border-box;
+    max-width: 100%;
     color: white;
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 10px;
 
     &:hover {
       background-color: #929292;

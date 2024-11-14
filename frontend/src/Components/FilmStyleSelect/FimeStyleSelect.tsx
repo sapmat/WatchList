@@ -13,7 +13,12 @@ const FilmStyleSelect = ({
 }) => {
   return (
     <FormControl>
-      <InputLabel id="film-style-label">Style</InputLabel>
+      <InputLabel
+        id="film-style-label"
+        shrink={Boolean(style)}
+      >
+        Style
+      </InputLabel>
       <CustomSelect
         labelId="film-style-label"
         value={style || (addAny ?? "Any")}

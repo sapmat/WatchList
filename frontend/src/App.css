@@ -5,8 +5,8 @@
 
 .app {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 2em;
+  padding: 5vh 0 0 0;
 }

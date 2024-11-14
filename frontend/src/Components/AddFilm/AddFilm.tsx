@@ -1,9 +1,10 @@
+import FilmStyleSelect from "../FilmStyleSelect/FimeStyleSelect";
+import FilmTypeSelect from "../FilmTypeSelect/FilmTypeSelect";
 import { useState } from "react";
 import { FilmStyle, FilmType } from "../../Util/Enums/enum";
 import { TextField } from "@mui/material";
-import FilmStyleSelect from "../FilmStyleSelect/FimeStyleSelect";
-import FilmTypeSelect from "../FilmTypeSelect/FilmTypeSelect";
 import { createFilm } from "../../Util/API/apiCall";
+import "./AddFilm.css"
 
 const AddFilm = ({ rerender }: { rerender: (n: number) => void }) => {
   const [name, setName] = useState<string>();
