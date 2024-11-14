@@ -41,7 +41,7 @@ const FilmTable = ({
               <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody sx={{ overflowY: "scroll", maxHeight: "50vh" }}>
+          <TableBody className="table-content" sx={{ overflowY: "scroll", maxHeight: "50vh" }}>
             {filmsElems}
           </TableBody>
         </Table>

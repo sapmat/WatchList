@@ -29,20 +29,29 @@
       border: #ccc 2px solid;
       border-radius: 10px;
     }
-  }
 
-  .row-button {
-    height: 100%;
-    border: none;
-    box-shadow: 0 0 0 1px #949494;
-    transition: box-shadow 0.2s ease-in-out;
+    .table-content {
+      max-height: 50vh;
+      overflow-y: scroll;
 
-    &:hover {
-      box-shadow: 0 0 0 1px #4e4e4e;
-    }
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
-    path {
-      filter: invert(0.8);
+      .row-button {
+        height: 100%;
+        border: none;
+        box-shadow: 0 0 0 1px #949494;
+        transition: box-shadow 0.2s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 0 1px #4e4e4e;
+        }
+
+        path {
+          filter: invert(0.8);
+        }
+      }
     }
   }
 }

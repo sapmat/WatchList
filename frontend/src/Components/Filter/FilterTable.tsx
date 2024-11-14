@@ -95,7 +95,7 @@ const FilterTable = ({
   };
 
   return (
-    <div className="filter-films" style={{ paddingTop: open ? '10px' : '0px' }}>
+    <div className="filter-films" style={{ padding: open ? '10px' : '0px' }}>
       <Button
         variant="text"
         sx={{ width: "20em" }}
