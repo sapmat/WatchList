@@ -13,3 +13,4 @@ Days range correct to selected month
 REWORK CSS
 Make as many components
 Add errors in filter
+Add animation

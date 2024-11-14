@@ -1,97 +1,104 @@
 .filter-films {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 2em;
-
   background-color: #383838;
   border-radius: 10px;
-  width: 60vw;
-  padding: 2em;
+  max-width: 60vw;
 
-  .filter-category {
+  .filter-content {
+    box-sizing: border-box;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    gap: 1em;
+    gap: 2em;
+    padding: 1em;
 
-    .category-title {
-      font-weight: 600;
-      font-size: large;
-      text-align: start;
-      width: 100%;
-    }
-
-    .section {
-      box-sizing: border-box;
-
+    .filter-category {
       display: flex;
-      gap: 5px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1em;
 
-      border: #929292 1px solid;
-      border-radius: 5px;
-      height: 2em;
-      padding: 0 5px;
+      .category-title {
+        font-weight: 600;
+        font-size: large;
+        text-align: start;
+        width: 100%;
+      }
 
-      .content {
+      .section {
+        box-sizing: border-box;
+
         display: flex;
-        flex-direction: row;
-        gap: 2px;
+        gap: 5px;
 
-        .title {
-          color: white;
-        }
+        border: #929292 1px solid;
+        border-radius: 5px;
+        height: 2em;
+        padding: 0 5px;
 
-        input {
-          font-size: 1em;
-          color: rgb(160, 160, 160);
-          background: none;
-          border: none;
+        .content {
+          display: flex;
+          flex-direction: row;
+          gap: 2px;
 
-          &:focus {
-            border: none;
-            outline: none;
-            cursor: pointer;
+          .title {
+            color: white;
           }
-        }
 
-        input[type="number"] {
-          &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button {
+          input {
+            font-size: 1em;
+            color: rgb(160, 160, 160);
+            background: none;
+            border: none;
+
+            &:focus {
+              border: none;
+              outline: none;
+              cursor: pointer;
+            }
+          }
+
+          input[type="number"] {
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+
+            width: 1.1em;
+          }
+
+          select {
             -webkit-appearance: none;
-          }
 
-          width: 1.1em;
-        }
-
-        select {
-          -webkit-appearance: none;
-
-          font-size: 1em;
-          color: rgb(160, 160, 160);
-          background: none;
-          border: none;
-          border-radius: 1px;
-          outline: none;
-
-          &:focus {
+            font-size: 1em;
+            color: rgb(160, 160, 160);
+            background: none;
             border: none;
+            border-radius: 1px;
             outline: none;
-            cursor: pointer;
-          }
 
-          option {
-            background-color: #383838;
+            &:focus {
+              border: none;
+              outline: none;
+              cursor: pointer;
+            }
+
+            option {
+              background-color: #383838;
+            }
           }
         }
       }
+    }
+
+    button {
+      width: 6em;
     }
   }
 
   button {
     color: white;
-    width: 6em;
     border-radius: 5px;
+    padding: 5px;
 
     &:hover {
       background-color: #929292;

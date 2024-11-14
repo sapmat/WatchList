@@ -13,8 +13,10 @@ export const createFilm = async (
   return axiosInstance.post("/", { name, style, type }).then((res) => res.data);
 };
 
-export const getFilms = async (query: FilterType): Promise<Film[]> => {
-  return axiosInstance.post(`/all`, { ...query }).then((res) => res.data);
+export const getFilms = async (filter: FilterType): Promise<Film[]> => {
+  console.log(filter);
+  
+  return axiosInstance.post(`/all`, { ...filter }).then((res) => res.data);
 };
 
 export const getFilm = async (_id: string): Promise<Film[]> => {

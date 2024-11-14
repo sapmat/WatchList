@@ -57,8 +57,8 @@ export class FilmRepository {
       averageRatingStart = 0,
       averageRatingEnd = 10,
       status = "",
-      createdAtStart = new Date(2024, 9, 11),
-      createdAtEnd = new Date(4024, 9, 11),
+      createdAtStart = "2024-10-11T22:00:00.000Z",
+      createdAtEnd = "4024-10-11T22:00:00.000Z",
     } = { ...filter };
 
     return filmModel.aggregate([
@@ -81,8 +81,8 @@ export class FilmRepository {
           },
           status: { $regex: status, $options: "i" },
           createdAt: {
-            $gte: createdAtStart,
-            $lte: createdAtEnd,
+            $gte: new Date(createdAtStart),
+            $lte: new Date(createdAtEnd),
           },
         },
       },
