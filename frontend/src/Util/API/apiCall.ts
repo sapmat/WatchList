@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Film } from "../Interfaces/film.interface";
 import { FilmStyle, FilmType } from "../Enums/enum";
-import { FilterType } from "../Interfaces/filetr";
+import { FilterType } from "../Interfaces/filter";
 
 const axiosInstance = axios.create({ baseURL: "http://localhost:3000/films" });
 
@@ -15,7 +15,7 @@ export const createFilm = async (
 
 export const getFilms = async (filter: FilterType): Promise<Film[]> => {
   console.log(filter);
-  
+
   return axiosInstance.post(`/all`, { ...filter }).then((res) => res.data);
 };
 

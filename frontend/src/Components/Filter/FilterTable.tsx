@@ -1,4 +1,4 @@
-import { FilterType } from "../../Util/Interfaces/filetr";
+import { FilterType } from "../../Util/Interfaces/filter";
 import { useState } from "react";
 import { FilmStyle, FilmType, WatchStatus } from "../../Util/Enums/enum";
 import { Button } from "@mui/material";
@@ -95,7 +95,7 @@ const FilterTable = ({
   };
 
   return (
-    <div className="filter-films" style={{ padding: open ? '10px' : '0px' }}>
+    <div className="filter-films" style={{ padding: open ? "10px" : "0px" }}>
       <Button
         variant="text"
         sx={{ width: "20em" }}
