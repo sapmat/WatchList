@@ -102,4 +102,4 @@ export class FilmRepository {
   }
 }
 
-export const FilmRepositories = new FilmRepository();
+export const filmRepository = new FilmRepository();

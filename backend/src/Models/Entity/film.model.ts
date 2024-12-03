@@ -1,25 +1,34 @@
-import mongoose, { Document, Schema } from "mongoose";
-import { FilmStyle, FilmType, WatchStatus } from "../Enums/enum";
+import mongoose, { Document, Schema, ObjectId } from "mongoose";
+import { FilmStyle, FilmType } from "../Enums/enum";
 
-export interface PartialFilm extends Document {
+export interface RequestBodyFilm {
+  name: string;
   style: FilmStyle;
   type: FilmType;
-  name: string;
+  image?: Buffer;
 }
 
 export interface Film extends Document {
-  _id: string;
+  _id: ObjectId;
+  name: string;
+  filmId: string;
   style: FilmStyle;
   type: FilmType;
-  name: string;
-  status: WatchStatus;
-  matenRating: number;
-  delaRating: number;
-  averageRating: number;
+  totalRating: number;
+  totalRaters: number;
+  image: Buffer;
 }
 
 const FilmSchema: Schema = new Schema(
   {
+    filmId: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
     style: {
       type: String,
       enum: Object.values(FilmStyle),
@@ -30,32 +39,16 @@ const FilmSchema: Schema = new Schema(
       enum: Object.values(FilmType),
       required: true,
     },
-    name: {
-      type: String,
-      required: true,
-    },
-    status: {
-      type: String,
-      enum: Object.values(WatchStatus),
-      default: WatchStatus.TO_WATCH,
-    },
-    matenRating: {
+    totalRating: {
       type: Number,
       default: 0,
-      min: 0,
-      max: 10,
     },
-    delaRating: {
+    totalRaters: {
       type: Number,
       default: 0,
-      min: 0,
-      max: 10,
     },
-    averageRating: {
-      type: Number,
-      default: 0,
-      min: 0,
-      max: 10,
+    image: {
+      type: Buffer,
     },
   },
   { autoIndex: true, timestamps: true }

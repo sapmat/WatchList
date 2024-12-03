@@ -9,5 +9,4 @@ export const filmSchemaValidate = Joi.object({
     .valid(...Object.values(FilmType))
     .required(),
   name: Joi.string().required(),
-  image: Joi.binary(),
 });

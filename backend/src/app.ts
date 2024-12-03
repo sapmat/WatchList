@@ -3,8 +3,10 @@ import * as express from "express";
 import mongoose from "mongoose";
 import * as path from "path";
 import { errorHandler } from "./Middleware/Errors/error";
-import loggerMiddelware from "./Middleware/Logs/logger";
+import loggerMiddleware from "./Middleware/Logs/logger";
 import { filmRouter } from "./Routes/film.router";
+import { userRouter } from "./Routes/user.router";
+import { groupRouter } from "./Routes/group.router";
 
 const cors = require("cors");
 
@@ -20,8 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/films", filmRouter);
+app.use("/users", userRouter);
+app.use("/groups", groupRouter);
 
-app.use(loggerMiddelware);
+app.use(loggerMiddleware);
 app.use(errorHandler);
 
 app.listen(process.env.SERVER_PORT, () => console.log(`Server is listening on port ${process.env.SERVER_PORT}`));
